@@ -70,9 +70,12 @@ def search_view(request: HttpRequest) -> HttpResponse:
 						found = True
 				# 3. AND/OR match (if no proximity or exact)
 				if not found:
-					q_and = parser.parse(query)
+					# Fuzzy search: append ~1 to each term
+					fuzzy_terms = [f"{term}~1" for term in query_terms]
+					fuzzy_query = ' '.join(fuzzy_terms)
+					q_and = parser.parse(fuzzy_query)
 					hits_and = searcher.search(q_and, limit=20, sortedby="date", reverse=True)
-					print(f"AND/OR hits: {len(hits_and)}")
+					print(f"AND/OR (fuzzy) hits: {len(hits_and)}")
 					for hit in hits_and:
 						hits.append(hit)
 						used_docids.add(hit.docnum)
