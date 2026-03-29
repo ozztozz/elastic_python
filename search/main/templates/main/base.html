@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dim">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Document Search{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DaisyUI CDN (Tailwind plugin) -->
+    <script>tailwind.config = { plugins: [daisyui] }</script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.css" />
+        <style>
+            mark {
+                font-family: inherit;
+                font-style: italic;
+                font-weight: 600;
+                background: none !important;
+                color: #fff;
+                border-bottom: 0.18em dotted #38bdf8; /* Tailwind sky-400 */
+                padding: 0 0.05em;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        </style>
+        {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-base-200 min-h-screen">
+    <div class="container mx-auto py-8">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+<script src="/static/main/document_viewer.js"></script>
+</body>
+</html>

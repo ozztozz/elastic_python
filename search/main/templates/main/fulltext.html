@@ -1,0 +1,17 @@
+{# main/fulltext.html #}
+{# Expects 'filename' in context #}
+{% if fulltexts and filename %}
+    {% for fname, doc in fulltexts.items %}
+        {% if fname == filename %}
+            <pre class="whitespace-pre-wrap">
+            {% for sentence in doc.sentences %}
+                <span class="fulltext-sentence">{{ sentence }}</span>
+            {% endfor %}
+            </pre>
+        {% endif %}
+    {% empty %}
+        <span class="text-base-content/50">Full text not available.</span>
+    {% endfor %}
+{% else %}
+    <span class="text-base-content/50">Full text not available.</span>
+{% endif %}
